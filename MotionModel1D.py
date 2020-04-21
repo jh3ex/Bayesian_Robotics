@@ -3,6 +3,9 @@
 """
 Created on Mon Apr 13 09:18:15 2020
 
+Bayesian Robotics course project:
+    illustrating motion model in 1D case
+
 @author: jingh
 """
 

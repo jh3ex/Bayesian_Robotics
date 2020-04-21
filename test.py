@@ -2,7 +2,8 @@
 """
 Created on Tue Apr 14 15:15:56 2020
 
-Orientation study
+Bayesian Robotics course project:
+    Orientation correction study
 
 @author: jingh
 """

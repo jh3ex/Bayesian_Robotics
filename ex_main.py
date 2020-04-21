@@ -2,7 +2,8 @@
 """
 Created on Tue Apr 14 11:05:18 2020
 
-Particle filter example
+Bayesian Robotics course project:
+    Particle filter exmaple
 
 @author: jingh
 """
@@ -11,7 +12,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import copy
-from particle_filter import ParticleFilter, ProbMotionModel, ProbSensorModel
+from . import ParticleFilter, ProbMotionModel, ProbSensorModel
 from scipy.stats import norm
 
 
@@ -64,7 +65,7 @@ if __name__ == '__main__':
     x, y, theta = pmm.initial_sample(x0_mu, x0_sigma, y0_mu, y0_sigma, theta0_mu, theta0_sigma, walk_rd)
     
     # Recursive particle filter estimation
-    # plt.figure(dpi=300)
+    plt.figure(dpi=300)
     
     err_set = []
     
@@ -90,22 +91,22 @@ if __name__ == '__main__':
             xt_theta, d_walk = pf.re_orientation(xtm1, xt)
             
         #     # xt.theta = norm.rvs(1, 0.001, size=n)
-            
+            # Orientation correction
             if d_walk > 0.6:
                 # xt.theta = norm.rvs(xt_theta, 0.001, size=n)
                 xt.theta = xt_theta
         
         # Plot
-        plt.figure(dpi=300)
+        # plt.figure(dpi=300)
         plt.scatter(xt.x, xt.y, s=1)
         plt.scatter([x, zx], [y, zy], c=['b', 'r'])
         
-        # plt.scatter(x_s, y_s, marker='^', c=['g'])
+        plt.scatter(x_s, y_s, marker='^', c=['g'])
         # # plt.title('step %d || err %g' % (k+1, err))
         plt.xlabel('x')
         plt.ylabel('y')
-        plt.title('Step %d || Error: %g' % (k, err))
-        plt.show() 
+        # plt.title('Step %d || Error: %g' % (k, err))
+        # plt.show() 
         
   
         
@@ -117,11 +118,11 @@ if __name__ == '__main__':
         x_s += 1.2
         y_s += 0.1
         
-    # plt.xlabel('x')
-    # plt.ylabel('y')
-    # plt.title('30 Steps || Mean Error: %g' % (np.mean(err_set)))
-    # plt.show()    
-    # print(np.mean(err_set))
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('30 Steps || Mean Error: %g' % (np.mean(err_set)))
+    plt.show()    
+    print(np.mean(err_set))
         
         
         
